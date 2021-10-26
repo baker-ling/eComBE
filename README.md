@@ -39,11 +39,11 @@ Finally, seed the database by running the command `npm run seed` at the shell pr
 
 Start up the server by running the command `node server`. The server will start up and log the port that it is listening on. You can then begin interacting with the backend via HTTP requests.
 
-## HTTP API
+### HTTP API
 
-### Categories
+#### Categories
 
-#### GET /api/categories
+##### GET /api/categories
 
 Provides a list of all categories and their products. Successful response is a JSON-serialization of an *array* of objects of following structure:
 
@@ -63,7 +63,7 @@ Provides a list of all categories and their products. Successful response is a J
 }
 ```
 
-#### GET /api/categories/[id]
+##### GET /api/categories/[id]
 
 Provides the category specified by `[id]` in the request URL. Successful response is a JSON-serialization of an object of following structure:
 
@@ -83,7 +83,7 @@ Provides the category specified by `[id]` in the request URL. Successful respons
 }
 ```
 
-#### POST /api/categories
+##### POST /api/categories
 
 Creates a category. Request body should contain JSON data with the following structure:
 
@@ -95,17 +95,17 @@ Creates a category. Request body should contain JSON data with the following str
 
 The response for a successful request will contain the `category_name` as well as the `id` assigned to the new category.
 
-#### PUT /api/categories/[id]
+##### PUT /api/categories/[id]
 
 Updates a category. Request body should have the same form as the POST request for creating a new category.
 
-#### DELETE /api/categories/[id]
+##### DELETE /api/categories/[id]
 
 Deletes a category.
 
-### Products
+#### Products
 
-#### GET /api/products
+##### GET /api/products
 
 Provides a list of all products. Successful response is a JSON-serialization of an *array* of objects of following structure:
 
@@ -152,7 +152,7 @@ Provides a list of all products. Successful response is a JSON-serialization of 
   }
 ```
 
-#### GET /api/products/[id]
+##### GET /api/products/[id]
 
 Provides the product specified by `[id]` in the request URL. Successful response is a JSON-serialization of an object of following structure:
 
@@ -181,7 +181,7 @@ Provides the product specified by `[id]` in the request URL. Successful response
 }
 ```
 
-#### POST /api/product
+##### POST /api/product
 
 Creates a new product. Request body should contain JSON data with the following structure:
 
@@ -197,17 +197,17 @@ Creates a new product. Request body should contain JSON data with the following 
 
 Note: The `tagIds` property may be omitted. Leave it out and specify the tags for the new product via PUT request if you want to get the id assigned to the new product back in the response.
 
-#### PUT /api/product/[id]
+##### PUT /api/product/[id]
 
 Updates a product. Request body should have the same form as the POST request for creating a new product, except that the `tagIds` property is required.
 
-#### DELETE /api/product/[id]
+##### DELETE /api/product/[id]
 
 Deletes a product.
 
-### Tags
+#### Tags
 
-#### GET /api/tags
+##### GET /api/tags
 
 Provides a list of all tags. Successful response is a JSON-serialization of an *array* of objects of following structure:
 
@@ -232,7 +232,7 @@ Provides a list of all tags. Successful response is a JSON-serialization of an *
   }
 ```
 
-#### GET /api/tags/[id]
+##### GET /api/tags/[id]
 
 Provides the tag specified by `[id]` in the request URL. Successful response is a JSON-serialization of an object of following structure:
 
@@ -257,7 +257,7 @@ Provides the tag specified by `[id]` in the request URL. Successful response is 
 }
 ```
 
-#### POST /api/tag
+##### POST /api/tag
 
 Creates a new tag. Request body should contain JSON data with the following structure:
 
@@ -272,15 +272,15 @@ Creates a new tag. Request body should contain JSON data with the following stru
 
 Note: The productIds` property may be omitted. Leave it out and specify the products for the new tag via PUT request if you want to get the id assigned to the new tag back in the response.
 
-#### PUT /api/tag/[id]
+##### PUT /api/tag/[id]
 
 Updates a tag. Request body should have the same form as the POST request for creating a new tag, except that the `productIds` property is required.
 
-#### DELETE /api/tag/[id]
+##### DELETE /api/tag/[id]
 
 Deletes a tag.
 
-## Video Walkthrough
+### Video Walkthrough
 
 A video walkthrough is available [here](https://1drv.ms/v/s!Amp9wAf74eY0myN69eZuwa5cb5ap?e=exdHqw).
 
