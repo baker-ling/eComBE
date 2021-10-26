@@ -20,7 +20,7 @@ router.get('/:id', async (req, res) => {
   // find a single tag by its `id`
   // be sure to include its associated Product data
   try {
-    const tagResult = await Tag.findAll({include: [{model: Product}]});
+    const tagResult = await Tag.findByPk(req.params.id, {include: [{model: Product}]});
     if (!tagResult) {
       return res.status(404).json({message: 'No product was found with that id.'});
     }
@@ -80,7 +80,9 @@ router.put('/:id', async (req, res) => {
     const currentProductTags = await ProductTag.findAll({where: {tag_id: req.params.id}});
     const currentProductIds = currentProductTags.map(productTag => product_id);
 
-    const newProductTags = req.body.productIds
+    const goalProductIds = req.body.productIds ?? [];
+
+    const newProductTags = goalProductIds
       .filter(product_id => !currentProductIds.includes(product_id))
       .map(product_id => {
         return {
@@ -90,7 +92,7 @@ router.put('/:id', async (req, res) => {
       });
     
     const productTagsIdsToRemove = currentProductTags
-      .filter(({product_id}) => !req.body.productIds.includes(product_id))
+      .filter(({product_id}) => !goalProductIds.includes(product_id))
       .map(({id}) => id);
     
     const updatedProductTags = await Promise.all([
@@ -110,7 +112,7 @@ router.delete('/:id', async (req, res) => {
   // delete on tag by its `id` value
   try {
     const result = await Tag.destroy({where: {id: req.params.id}});
-    res.status(200).json(err);
+    res.status(200).json(result);
   } catch (err) {
     console.error(err);
     res.status(500).json(err);
